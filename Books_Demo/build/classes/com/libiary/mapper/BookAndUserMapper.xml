@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.libiary.mapper.BookAndUserMapper">
+
+
+	<!-- public void addBorrowBook(@Param("uid")String user_ID,@Param("bid")String bookID,@Param("bookName")String bookName);//增);-->
+	<insert id="addBorrowBook" >
+	insert 
+	into BookAndUser
+	values(
+		   #{uid},
+		   #{bid},
+		   #{bookName}
+		   )
+	</insert>
+	
+	<!-- public BookAndUser getBrrowBookById(@Param("user_ID")String user_ID); -->
+	<select id="getBrrowBookById" resultType="BookAndUser"> 
+		select user_ID,bookID,bookName
+		from BookAndUser
+		where user_ID=#{user_ID}
+	</select>
+	
+	<!-- public void backBook(@Param("Bid")String bookID); -->
+	<delete id="backBook">
+		delete 
+		from BookAndUser
+		where bookID=#{Bid}
+	</delete>
+</mapper>

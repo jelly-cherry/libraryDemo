@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.libiary.mapper.BookMapper">
+
+	<!-- public List<Book> getAllBook(); -->
+	<select id="getAllBook" resultType="com.libiary.bean.Book">
+		select bookID,bookName,writer,price from Book
+	</select>
+	
+	<!-- public Book getBookById(@Param("bID")String bookID); -->
+		<select id="getBookById" resultType="com.libiary.bean.Book">
+			select bookID,bookName,writer,price from Book
+			where bookID=#{bID}
+		</select>
+	
+	<!-- public void deleteBookByID(@Param("bookID")String bookID); -->
+		<delete id="deleteBookByID">
+			delete 
+			from Book
+			where bookID=#{bookID}
+		</delete>
+		
+	<!-- public void updateBook(Book book); -->
+		<update id="updateBook">
+			update Book
+			set 
+			bookName=#{bookName},
+			writer=#{writer},
+			price=#{price}
+			where bookID=#{bookID}
+		</update>
+	<!-- public void addBook(Book book); -->
+	<insert id="addBook">
+		insert
+		into Book
+		values(	
+			#{bookID},
+			#{bookName},
+			#{writer},
+			#{price}
+		)
+	</insert>
+	
+</mapper>

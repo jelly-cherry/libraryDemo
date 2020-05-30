@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.libiary.mapper.UserMapper">
+
+	<!-- public User getUserById(String username,String password); -->
+	<select id="getUserById" resultType="com.libiary.bean.User">
+		select user_ID,username,password,phone,sex,manager
+		from BookUser
+		 where username=#{username} AND password=#{password}
+	</select>
+	
+	<!-- 	public List<User> getALLUser(); -->
+	<select id="getALLUser" resultType="com.libiary.bean.User">
+		select user_ID,username,password,phone,sex 
+		from BookUser
+	</select>
+	
+	<!-- public void addUser(User user); -->
+	<insert id="addUser">
+		insert 
+		into BookUser 
+		values  (#{user_ID},#{username},#{password},#{phone},#{sex},'1')
+	</insert>
+	
+	<!-- public void deleteUser(@Param("uid")String uid); -->
+	<delete id="deleteUser">
+		delete
+		from BookUser
+		where user_ID=#{uid}
+	
+	</delete>
+	
+	<!-- public User updateUser(User user); -->
+	<update id="updateUser">
+	update BookUser
+	set
+	username=#{username},
+	password=#{password},
+	phone=#{phone},
+	sex=#{sex}
+	where user_ID=#{user_ID}
+	</update>
+	
+	<!-- public User getUserById2(@Param("user_ID")String user_ID);/根据ID查 -->
+		<select id="getUserById2" resultType="com.libiary.bean.User">
+		select user_ID,username,password,phone,sex,manager
+		from BookUser
+		 where user_ID=#{user_ID} 
+		</select>
+	
+</mapper>
